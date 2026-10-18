@@ -1,21 +1,27 @@
 Package: USGSLidarExplorer
 Type: Shiny
 Title: Explore and Download USGS 3DEP Lidar
-Version: 0.1.0
+Version: 0.2.1
 Authors@R: person("Local", "User", role = c("aut", "cre"), email = "local@example.invalid")
 Description: A local Shiny application for finding USGS 3DEP lidar projects
     that overlap an sf area of interest, selecting individual LAS or LAZ tiles,
-    and downloading them with resume, retry, and validation support.
+    and downloading them with resume, retry, and validation support. It also
+    generates 0.5 m canopy height, terrain, and hillshade GeoTIFF products.
 License: MIT
 Encoding: UTF-8
 Imports:
     curl,
     jsonlite,
     leaflet,
+    leaflet.extras,
+    future,
     lidR,
+    parallelly,
     rlas,
     sf,
-    shiny
+    shiny,
+    terra,
+    viridisLite,
+    zip
 Suggests:
-    shiny.exe,
     testthat

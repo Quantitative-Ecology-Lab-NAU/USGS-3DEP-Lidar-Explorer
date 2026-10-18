@@ -1,0 +1,2 @@
+https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AZ_Coconino_2019_B19/AZ_Coconino_B1_2019/LAZ/USGS_LPC_AZ_Coconino_2019_B19_w1396n1470.laz
+https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AZ_Coconino_2019_B19/AZ_Coconino_B1_2019/LAZ/USGS_LPC_AZ_Coconino_2019_B19_w1397n1470.laz

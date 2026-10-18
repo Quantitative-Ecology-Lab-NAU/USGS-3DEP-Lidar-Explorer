@@ -2,13 +2,29 @@
   if (is.null(x) || length(x) == 0L || (length(x) == 1L && is.na(x))) y else x
 }
 
+max_workers <- function() max(1L, as.integer(parallelly::availableCores()))
+
+# Default of 8 workers, capped at the cores available.
+default_workers <- function() min(8L, max_workers())
+
 assert_packages <- function() {
-  required <- c("shiny", "sf", "leaflet", "curl", "jsonlite", "rlas", "lidR")
-  missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
+  required <- c("shiny", "sf", "leaflet", "leaflet.extras", "curl", "jsonlite", "rlas", "lidR", "terra", "viridisLite", "zip", "future", "parallelly")
+  is_missing <- function(pkgs) pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  missing <- is_missing(required)
+  if (length(missing)) {
+    message("Installing missing R packages: ", paste(missing, collapse = ", "))
+    repos <- getOption("repos")
+    if (is.null(repos) || identical(unname(repos[["CRAN"]]), "@CRAN@") || !"CRAN" %in% names(repos)) {
+      repos <- c(CRAN = "https://cloud.r-project.org")
+    }
+    tryCatch(utils::install.packages(missing, repos = repos, dependencies = NA),
+             error = function(e) message("Package installation failed: ", conditionMessage(e)))
+    missing <- is_missing(required)
+  }
   if (length(missing)) {
     stop(
-      "Install the required R packages first: ",
-      paste(sprintf("install.packages('%s')", missing), collapse = "; "),
+      "Could not install the required R packages: ", paste(missing, collapse = ", "),
+      ". Try manually: ", paste(sprintf("install.packages('%s')", missing), collapse = "; "),
       call. = FALSE
     )
   }
