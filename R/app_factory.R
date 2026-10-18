@@ -34,8 +34,34 @@ create_usgs_lidar_app <- function(initial_aoi = NULL) {
 
   css <- "
     body { background: #f4f7f4; }
-    .navbar-default { background: #173f35; border-color: #173f35; }
-    .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a { color: white; }
+    .navbar { min-height: 60px; }
+    .navbar-default { background: #003466; border-color: #003466; }
+    .navbar-header .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 60px;
+      padding: 5px 15px;
+    }
+    .navbar-brand img { height: 48px; width: auto; object-fit: contain; }
+    .navbar-brand .brand-logos { display: flex; align-items: center; gap: 12px; }
+    .navbar-brand .app-title { font-size: 18px; }
+    .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover,
+    .navbar-default .navbar-nav > li > a { color: white; }
+    .navbar-default .navbar-nav > li > a { height: 60px; padding-top: 20px; padding-bottom: 20px; }
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus { background: #00264d; color: white; }
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus { background: #00264d; color: white; }
+    @media (min-width: 768px) {
+      .navbar-brand .brand-logos { position: absolute; top: 6px; right: 15px; }
+      .navbar-collapse { float: left !important; }
+    }
+    @media (max-width: 600px) {
+      .navbar-brand img { height: 40px; }
+      .navbar-brand .app-title { display: none; }
+    }
     .well { background: white; border: 0; box-shadow: 0 2px 12px rgba(20,55,45,.09); }
     .btn-primary { background: #177245; border-color: #177245; }
     .btn-success { background: #b75b22; border-color: #b75b22; }
@@ -53,7 +79,26 @@ create_usgs_lidar_app <- function(initial_aoi = NULL) {
   "
 
   ui <- shiny::navbarPage(
-    title = "USGS 3DEP Lidar Explorer",
+    title = shiny::tags$span(
+      shiny::span(class = "app-title", "USGS 3DEP Lidar Explorer"),
+      shiny::div(class = "brand-logos",
+        shiny::tags$a(
+          href = "https://eri.nau.edu/",
+          target = "_blank",
+          rel = "noopener noreferrer",
+          title = "Ecological Restoration Institute",
+          shiny::tags$img(src = "NAU_Ecological Restoration Institute_wordmark-H_Rev-wht-full.png",
+            alt = "Ecological Restoration Institute")
+        ),
+        shiny::tags$a(
+          href = "https://quantitativeecology.org/",
+          target = "_blank",
+          rel = "noopener noreferrer",
+          title = "QuantitativeEcology.org",
+          shiny::tags$img(src = "qeand-logo.png", alt = "QuantitativeEcology.org")
+        )
+      )
+    ),
     header = shiny::tags$head(
       shiny::tags$style(shiny::HTML(css)),
       shiny::tags$script(shiny::HTML("$(function() {

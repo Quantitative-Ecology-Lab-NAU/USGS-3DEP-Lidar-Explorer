@@ -4,8 +4,8 @@
 
 max_workers <- function() max(1L, as.integer(parallelly::availableCores()))
 
-# Default of 8 workers, capped at the cores available.
-default_workers <- function() min(8L, max_workers())
+# Default of 2 workers, capped at the cores available.
+default_workers <- function() min(2L, max_workers())
 
 assert_packages <- function() {
   required <- c("shiny", "sf", "leaflet", "leaflet.extras", "curl", "jsonlite", "rlas", "lidR", "terra", "viridisLite", "zip", "future", "parallelly")

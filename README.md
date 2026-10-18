@@ -2,6 +2,23 @@
 
 A local Shiny app that accepts an `sf` point, polygon, or multipolygon; finds every overlapping USGS 3DEP lidar project; lets the user choose among overlapping projects and individual LAS/LAZ tiles; and downloads those tiles to a chosen folder.
 
+## Project layout
+
+```text
+.
+├── app.R                 # Shiny UI/server entry point
+├── R/                    # App functions, data access, and processing
+├── www/                  # Static app assets (logos, CSS, and JavaScript)
+├── tests/testthat/        # Automated tests
+├── run_app.R             # Portable R/Rscript launcher
+├── USGS_3DEP_Lidar_Explorer.bat  # Windows double-click launcher
+├── DESCRIPTION           # Project metadata and R dependencies
+├── USGSLidarExplorer.Rproj
+└── README.md
+```
+
+Shiny serves files from `www/` at the app root, so the ERI and QEand.org logo files live there and are referenced by their filenames in the UI. The `R/` directory contains functions sourced by `app.R`; `tests/testthat/` contains the test suite.
+
 ## Get the code
 
 Download the project from the [GitHub repository](https://github.com/Quantitative-Ecology-Lab-NAU/USGSlazDownloader) using **Code > Download ZIP**, then extract the ZIP file. Keep the extracted project files together. After installing R and the packages listed below, you can start the app either from R/RStudio with `source("run_app.R")` followed by `run_usgs_lidar_app()`, or on Windows by double-clicking `USGS_3DEP_Lidar_Explorer.bat`.
@@ -55,7 +72,7 @@ The **Terrain & canopy** tab finds downloaded LAS/LAZ files in a folder. Choose 
 
 The map previews either the DEM or CHM with magma colors over Esri World Imagery or OpenTopoMap. Preview rasters may be downsampled and reprojected for display; exported GeoTIFFs retain the LAS/LAZ coordinate system. Generated files can be downloaded together as a ZIP.
 
-When multiple LAS/LAZ tiles are selected, the app processes them as one `lidR` catalog and produces a seamless set of rasters. You can set workers (up to 8, based on available cores), chunk size (250–2,000 m; default 250 m), and chunk buffer (0–100 m; default 20 m, and always less than half the chunk size). Larger worker counts can require substantially more memory. Catalog processing uses temporary intermediate files, removes them after completion, and keeps the final GeoTIFFs in the generated-file folder. Select tiles from one non-overlapping acquisition; overlapping tiles are rejected.
+When multiple LAS/LAZ tiles are selected, the app processes them as one `lidR` catalog and produces a seamless set of rasters. You can set workers (default 2, up to the available cores), chunk size (250–2,000 m; default 250 m), and chunk buffer (0–100 m; default 20 m, and always less than half the chunk size). Larger worker counts can require substantially more memory. Catalog processing uses temporary intermediate files, removes them after completion, and keeps the final GeoTIFFs in the generated-file folder. Select tiles from one non-overlapping acquisition; overlapping tiles are rejected.
 
 ## Segment individual trees
 

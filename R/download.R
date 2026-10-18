@@ -95,7 +95,7 @@ download_one_tile <- function(job, destination, retries = 5L) {
   )
 }
 
-download_tiles <- function(tiles, projects, destination, workers = 4L, retries = 5L) {
+download_tiles <- function(tiles, projects, destination, workers = 2L, retries = 5L) {
   destination <- normalizePath(destination, winslash = "/", mustWork = FALSE)
   dir.create(destination, recursive = TRUE, showWarnings = FALSE)
   if (!dir.exists(destination)) stop("Could not create destination folder: ", destination, call. = FALSE)

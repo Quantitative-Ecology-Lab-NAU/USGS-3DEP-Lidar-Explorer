@@ -6,6 +6,7 @@ source(testthat::test_path("..", "..", "R", "terrain.R"))
 testthat::test_that("catalog defaults match the Shiny controls", {
   defaults <- formals(process_lidar_files)
   testthat::expect_equal(defaults$workers, 2L)
+  testthat::expect_equal(default_workers(), min(2L, max_workers()))
   testthat::expect_equal(defaults$chunk_size, 250)
   testthat::expect_equal(defaults$buffer_size, 20)
 })
