@@ -10,7 +10,7 @@ The launcher uses its own folder for the app files, so you can move or copy the 
 
 The project polygons come from layer 24 (`Lidar Point Cloud`) of the USGS `3DEPElevationIndex` map service. Tile records and bounding boxes come from the official TNM Access products API, then tile URLs are checked against each project's `0_file_download_links.txt` manifest when it is available. The map also displays layer 8 of the index as the USGS availability overlay.
 
-<img src="https://github.com/Quantitative-Ecology-Lab-NAU/USGSlazDownloader/blob/master/Screenshot.png" width="100%"  height="auto" align="center"/>
+<img src="https://github.com/Quantitative-Ecology-Lab-NAU/USGSlazDownloader/blob/main/Screenshot.png" width="100%"  height="auto" align="center"/>
 
 ## Start the app
 
@@ -27,10 +27,10 @@ Or at a command prompt (from this folder):
 Rscript run_app.R
 ```
 
-The required packages are `shiny`, `sf`, `leaflet`, `leaflet.extras`, `curl`, `jsonlite`, `rlas`, `lidR`, `terra`, `viridisLite`, `zip`, and `future`.
+The required packages are `shiny`, `shiny.exe`, `sf`, `leaflet`, `leaflet.extras`, `curl`, `jsonlite`, `rlas`, `lidR`, `terra`, `viridisLite`, `zip`, and `future`.
 
 ```r
-install.packages(c("shiny", "sf", "leaflet", "leaflet.extras", "curl", "jsonlite", "rlas", "lidR", "terra", "viridisLite", "zip", "future"))
+install.packages(c("shiny", "sf", "leaflet", "leaflet.extras", "curl", "jsonlite", "rlas", "lidR", "terra", "viridisLite", "zip", "future", "shiny.exe"))
 ```
 
 ## Start with an existing sf object
