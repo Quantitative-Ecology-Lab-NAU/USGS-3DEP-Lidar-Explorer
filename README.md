@@ -4,24 +4,7 @@ A local Shiny app that accepts an `sf` point, polygon, or multipolygon; finds ev
 
 <img src="Screenshot.png" alt="USGS 3DEP Lidar Explorer screenshot" width="100%">
 
-## Project layout
-
-```text
-.
-├── app.R                 # Shiny UI/server entry point
-├── R/                    # App functions, data access, and processing
-├── www/                  # Static app assets (logos, CSS, and JavaScript)
-├── tests/testthat/        # Automated tests
-├── run_app.R             # Portable R/Rscript launcher
-├── USGS_3DEP_Lidar_Explorer.bat  # Windows double-click launcher
-├── DESCRIPTION           # Project metadata and R dependencies
-├── USGSLidarExplorer.Rproj
-└── README.md
-```
-
-Shiny serves files from `www/` at the app root, so the ERI and QEand.org logo files live there and are referenced by their filenames in the UI. The `R/` directory contains functions sourced by `app.R`; `tests/testthat/` contains the test suite.
-
-## Get the code
+## Easiest way to get started
 
 Download the project from the [GitHub repository](https://github.com/Quantitative-Ecology-Lab-NAU/USGSlazDownloader) using **Code > Download ZIP**, then extract the ZIP file. Keep the extracted project files together. After installing R and the packages listed below, you can start the app either from R/RStudio with `source("run_app.R")` followed by `run_usgs_lidar_app()`, or on Windows by double-clicking `USGS_3DEP_Lidar_Explorer.bat`.
 
