@@ -2,6 +2,8 @@
 
 A local Shiny app that accepts an `sf` point, polygon, or multipolygon; finds every overlapping USGS 3DEP lidar project; lets the user choose among overlapping projects and individual LAS/LAZ tiles; and downloads those tiles to a chosen folder.
 
+<img src="Screenshot.png" alt="USGS 3DEP Lidar Explorer screenshot" width="100%">
+
 ## Project layout
 
 ```text
